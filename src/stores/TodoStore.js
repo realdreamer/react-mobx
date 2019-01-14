@@ -4,7 +4,7 @@ import { observable, computed, action } from 'mobx';
 class Todo {
   @observable value;
   @observable id;
-  @observable complete;
+  @observable completed;
 
   constructor(value) {
     this.value = value;
@@ -23,7 +23,7 @@ class TodoStore {
 
   @computed get filteredTodos() {
     const matchesFilter = new RegExp(this.filter, 'i');
-    return this.todos.filter(todo => !this.filter || matchesFilter.test(todo));
+    return this.todos.filter(todo => !this.filter || matchesFilter.test(todo.value));
   }
 }
 
